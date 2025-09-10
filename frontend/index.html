@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Smart Expense Tracker</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile_img.png" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Jane Austen</a></h1>
+        <div class="bio mt-3 text-center">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, consequuntur voluptate iste placeat sit
+            ullam nulla cum earum, voluptatibus eum reiciendis voluptatem! Voluptatum nulla eligendi odit iure quasi
+            mollitia facere.</p>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#dashboard" class="nav-link scrollto"><i class="bx bxs-dashboard"></i> <span>Dashboard</span></a>
+          <li><a href="#expenses" class="nav-link scrollto"><i class="bx bx-wallet"></i> <span>Expenses</span></a></li>
+          <li><a href="#wishlist" class="nav-link scrollto"><i class="bx bx-gift"></i> <span>Wishlist</span></a></li>
+          <li><a href="#notification" class="nav-link scrollto"><i class="bx bx-bell"></i> <span>Notification</span></a>
+          <li><a href="#logout" class="nav-link scrollto"><i class="bx bx-log-out"></i> <span>Log Out</span></a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center text-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Smart Expense Tracker</h1>
+      <p>Manage Your <span class="typed" data-typed-items="Expenses, Savings, Goals, Budget Planning"></span></p>
+
+      <!-- Login & Signup Buttons -->
+      <div class="hero-buttons mt-4 d-flex justify-content-center">
+        <a href="login.html" class="btn btn-primary me-3">Login</a>
+        <a href="signup.html" class="btn btn-success">Sign Up</a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+
+  <main id="main">
+
+    <!-- ======= Dashboard Section ======= -->
+    <section id="dashboard" class="dashboard section-bg py-5">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Dashboard</h2>
+          <p class="text-muted">At a glance: today’s spend, this month’s totals, category insights & goals.</p>
+        </div>
+
+        <!-- TOP SUMMARY CARDS -->
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card dash-card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="card-label">Today’s Expense</div>
+                    <div class="display-6 fw-bold" id="dbToday">$0.00</div>
+                  </div>
+                  <span class="icon-pill bg-danger-subtle text-danger"><i class="bi bi-cash-coin"></i></span>
+                </div>
+                <div class="small text-muted mt-1" id="dbTodayDate">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card dash-card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="card-label">This Month</div>
+                    <div class="display-6 fw-bold" id="dbMonthTotal">$0.00</div>
+                  </div>
+                  <span class="icon-pill bg-primary-subtle text-primary"><i class="bi bi-calendar3"></i></span>
+                </div>
+                <div class="small mt-1"><span class="text-success" id="dbMoM">+0%</span> vs last month</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card dash-card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="card-label">Total Savings</div>
+                    <div class="display-6 fw-bold" id="dbSavings">$0.00</div>
+                  </div>
+                  <span class="icon-pill bg-success-subtle text-success"><i class="bi bi-piggy-bank"></i></span>
+                </div>
+                <div class="small text-muted mt-1" id="dbSavedNote">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="card dash-card shadow-sm h-100">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <div class="card-label">Wishlist Progress</div>
+                    <div class="h5 fw-bold mb-1" id="dbTopGoal">—</div>
+                    <div class="progress" style="height:8px;">
+                      <div class="progress-bar" id="dbTopGoalBar" style="width:0%"></div>
+                    </div>
+                  </div>
+                  <span class="icon-pill bg-warning-subtle text-warning"><i class="bi bi-bullseye"></i></span>
+                </div>
+                <div class="small text-muted mt-1" id="dbTopGoalMeta">0% • Saved $0 / $0</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- LEFT COLUMN -->
+          <div class="col-lg-8">
+            <!-- CHARTS -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Category-wise (Last 30 Days)</span>
+                <small class="text-muted" id="db30Total">Total: $0.00</small>
+              </div>
+              <div class="card-body">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <canvas id="dbPie30" height="300"></canvas>
+                  </div>
+                  <div class="col-md-6">
+                    <canvas id="dbBar7" height="300"></canvas>
+                  </div>
+                </div>
+                <div class="small text-muted mt-2">Updates when you add/edit/delete expenses.</div>
+              </div>
+            </div>
+
+            <!-- TOP CATEGORIES (7 DAYS) -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Top 3 Categories (Last 7 Days)</span>
+                <a href="#expenses" class="btn btn-outline-secondary btn-sm">View All</a>
+              </div>
+              <div class="card-body">
+                <ul class="list-group" id="dbTopCats">
+
+                  <!-- JS renders top 3 items -->
+                  <!-- sample (remove later) -->
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="me-3 flex-grow-1">
+                      <div class="fw-semibold">Food & Grocery</div>
+                      <div class="progress progress-thin mt-2">
+                        <div class="progress-bar" style="width: 70%"></div>
+                      </div>
+                    </div>
+                    <strong>$186.50</strong>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+          <div class="col-lg-4">
+            <!-- NOTIFICATIONS -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Notifications & Alerts</span>
+                <a href="#notification" class="small text-primary">Settings</a>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush" id="dbAlerts">
+                  <!-- JS fills recent alerts -->
+                  <!-- sample (remove later) -->
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="me-2">
+                      <div class="fw-semibold">Food limit exceeded</div>
+                      <div class="small text-muted">Spent $215 / Limit $200</div>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger rounded-pill">OVR</span>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+            <!-- WISHLIST SNAPSHOT -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Wishlist Snapshot</span>
+                <a href="#wishlist" class="btn btn-outline-secondary btn-sm">Manage</a>
+              </div>
+              <div class="card-body">
+                <ul class="list-group small" id="dbWishMini">
+                  <!-- JS fills few wishlist items -->
+                  <!-- sample -->
+                  <li class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                      <span>New Phone</span>
+                      <strong>$320 / $800</strong>
+                    </div>
+                    <div class="progress progress-thin mt-2">
+                      <div class="progress-bar" style="width:40%"></div>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- End Dashboard Section -->
+
+    <!-- ======= Expenses Section ======= -->
+    <section id="expenses" class="expenses section-bg py-5">
+      <div class="container">
+        <div class="section-title">
+          <h2>Expenses</h2>
+          <p class="text-muted">Add your daily expenses and see last 30 days category-wise analytics.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- LEFT: Form + Categories + Expense List -->
+          <div class="col-lg-6">
+            <!-- Add / Edit Expense -->
+            <div class="card shadow-sm mb-4" id="expCard">
+              <div class="card-header bg-white fw-semibold">Add / Edit Expense</div>
+              <div class="card-body">
+                <form id="expenseForm" class="row g-3">
+                  <input type="hidden" id="expId">
+                  <div class="col-md-6">
+                    <label class="form-label">Date</label>
+                    <input type="date" class="form-control" id="expDate" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Category</label>
+                    <select class="form-select" id="expCategory" required>
+                      <option value="" disabled selected>Select Category</option>
+                      <option value="Food & Grocery">Food & Grocery</option>
+                      <option value="House Rent">House Rent</option>
+                      <option value="Transport">Transport</option>
+                      <option value="Education">Education</option>
+                      <option value="Healthcare">Healthcare</option>
+                      <option value="Bills & Utilities">Bills & Utilities</option>
+                      <option value="Entertainment">Entertainment</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Amount</label>
+                    <input type="number" step="0.01" min="0" class="form-control" id="expAmount" placeholder="0.00"
+                      required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Note (optional)</label>
+                    <input type="text" class="form-control" id="expNote" placeholder="e.g., Lunch, Bus fare">
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+                    <button type="button" class="btn btn-outline-secondary d-none" id="btnCancelEdit">Cancel
+                      Edit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Today's Total (separate card) -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Today's Expenses</span>
+                <small class="text-muted" id="todayDate"></small>
+              </div>
+              <div class="card-body">
+                <!-- Today's expense list -->
+                <ul class="list-group mb-3" id="todayExpenseList"></ul>
+
+                <!-- Today's total -->
+                <div class="text-end">
+                  <span class="fw-semibold">Total:</span>
+                  <span id="todayTotalAmount" class="fw-bold text-primary">$0.00</span>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Expense List (last 30 days) -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <div class="fw-semibold">Recent Expenses (Last 30 Days)</div>
+                <small class="text-muted" id="total30">Total: $0.00</small>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush" id="expList"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Pie Chart -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold">Category-wise Pie (Last 30 Days)</div>
+              <div class="card-body">
+                <canvas id="pie30" height="320"></canvas>
+                <div class="small text-muted mt-2">Auto-updates when you add/edit/delete an expense.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- End Expenses Section -->
+
+    <!-- ======= Wishlist Section ======= -->
+    <section id="wishlist" class="wishlist section-bg py-5">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Wishlist</h2>
+          <p class="text-muted">Create goals with priority, track savings, and see visual progress.</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- LEFT: Form + List -->
+          <div class="col-lg-6">
+            <!-- Add / Edit Goal -->
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-white fw-semibold">Add / Edit Goal</div>
+              <div class="card-body">
+                <form id="goalForm" class="row g-3">
+                  <input type="hidden" id="goalId">
+
+                  <div class="col-md-12">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-control" id="goalTitle" placeholder="e.g., New Phone / Trip Fund"
+                      required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Target Amount</label>
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      <input type="number" min="0" step="0.01" class="form-control" id="goalTarget" placeholder="0.00"
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Saved (optional)</label>
+                    <div class="input-group">
+                      <span class="input-group-text">$</span>
+                      <input type="number" min="0" step="0.01" class="form-control" id="goalSaved" placeholder="0.00">
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Priority</label>
+                    <select class="form-select" id="goalPriority" required>
+                      <option value="HIGH">HIGH</option>
+                      <option value="MEDIUM" selected>MEDIUM</option>
+                      <option value="LOW">LOW</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Deadline (optional)</label>
+                    <input type="date" class="form-control" id="goalDeadline">
+                  </div>
+
+                  <div class="col-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary" id="btnGoalSave">Save</button>
+                    <button type="button" class="btn btn-outline-secondary d-none" id="btnGoalCancel">Cancel
+                      Edit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Wishlist List -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <span class="fw-semibold">My Wishlist</span>
+                <small class="text-muted" id="wlCount">0 item</small>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush" id="wishList">
+
+                  <!-- JS will render items here -->
+                  <!-- Example static item (remove after JS hook): -->
+                  <li class="list-group-item wish-item d-flex justify-content-between align-items-center" data-id="1">
+                    <div class="me-3 flex-grow-1">
+                      <div class="d-flex align-items-center gap-2">
+                        <strong>New Phone</strong>
+                        <span class="badge priority-badge high">HIGH</span>
+                      </div>
+                      <div class="small text-muted">Saved $320 / $800 • Deadline: 31 Dec 2025</div>
+                      <div class="progress progress-thin mt-2">
+                        <div class="progress-bar" style="width: 40%"></div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" data-act="view">View</button>
+                      <button class="btn btn-outline-secondary btn-sm" data-act="edit">Edit</button>
+                      <button class="btn btn-outline-danger btn-sm" data-act="del">Delete</button>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Goal Details -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold">Goal Details</div>
+              <div class="card-body" id="goalDetail">
+                <!-- Default placeholder -->
+                <div class="text-muted">Select a goal from the list to see details here.</div>
+
+                <!-- Example details (remove after JS hook): -->
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div>
+                    <h5 class="mb-1">New Phone</h5>
+                    <div class="small text-muted">Priority: HIGH • Deadline: 31 Dec 2025</div>
+                  </div>
+                  <span class="badge priority-badge high">HIGH</span>
+                </div>
+
+                <div class="progress rounded-pill mb-2" style="height: 10px;">
+                  <div class="progress-bar" style="width: 40%"></div>
+                </div>
+
+                <div class="row g-3 my-2">
+                  <div class="col-6">
+                    <div class="stat-chip">
+                      <div class="label">Saved</div>
+                      <div class="value">$320</div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="stat-chip">
+                      <div class="label">Target</div>
+                      <div class="value">$800</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-primary">Add Saving</button>
+                  <button class="btn btn-outline-danger">Delete Goal</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- End Wishlist Section -->
+
+    <!-- ======= Notification Section ======= -->
+    <section id="notification" class="notification section-bg py-5">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Notifications</h2>
+          <p class="text-muted">Alert users when overspending in specific categories & send weekly summaries (email or
+            push).</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- LEFT: Overspending Alerts -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Overspending Alerts</span>
+                <div class="form-check form-switch m-0">
+                  <input class="form-check-input" type="checkbox" id="toggleOverspend" checked>
+                  <label class="form-check-label small" for="toggleOverspend">Enabled</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <p class="small text-muted mb-3">
+                  Set monthly thresholds per category. You’ll get an alert if spending crosses the limit.
+                </p>
+
+                <!-- Threshold table -->
+                <div class="table-responsive">
+                  <table class="table align-middle mb-3">
+                    <thead class="table-light">
+                      <tr>
+                        <th style="min-width:180px;">Category</th>
+                        <th style="width:170px;">Monthly Limit ($)</th>
+                        <th style="width:120px;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="thresholdTable">
+                      <!-- Sample static rows (JS will replace/update later) -->
+                      <tr data-cat="Food & Grocery">
+                        <td>Food & Grocery</td>
+                        <td><input type="number" class="form-control form-control-sm" value="200" min="0" step="0.01">
+                        </td>
+                        <td>
+                          <button class="btn btn-outline-secondary btn-sm" data-act="save">Save</button>
+                        </td>
+                      </tr>
+                      <tr data-cat="Transport">
+                        <td>Transport</td>
+                        <td><input type="number" class="form-control form-control-sm" value="60" min="0" step="0.01">
+                        </td>
+                        <td>
+                          <button class="btn btn-outline-secondary btn-sm" data-act="save">Save</button>
+                        </td>
+                      </tr>
+                      <tr data-cat="Bills & Utilities">
+                        <td>Bills & Utilities</td>
+                        <td><input type="number" class="form-control form-control-sm" value="120" min="0" step="0.01">
+                        </td>
+                        <td>
+                          <button class="btn btn-outline-secondary btn-sm" data-act="save">Save</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Add custom threshold -->
+                <div class="row g-2">
+                  <div class="col-7">
+                    <select class="form-select form-select-sm" id="thrCategory">
+                      <option selected disabled>Select Category</option>
+                      <option>Food & Grocery</option>
+                      <option>House Rent</option>
+                      <option>Transport</option>
+                      <option>Education</option>
+                      <option>Healthcare</option>
+                      <option>Bills & Utilities</option>
+                      <option>Entertainment</option>
+                      <option>Others</option>
+                    </select>
+                  </div>
+                  <div class="col-3">
+                    <input type="number" id="thrAmount" class="form-control form-control-sm" min="0" step="0.01"
+                      placeholder="0.00">
+                  </div>
+                  <div class="col-2 d-grid">
+                    <button class="btn btn-primary btn-sm" id="btnAddThreshold">Add</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Alerts -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Recent Alerts</span>
+                <button class="btn btn-outline-secondary btn-sm" id="btnClearAlerts">Clear All</button>
+              </div>
+              <div class="card-body p-0">
+                <ul class="list-group list-group-flush" id="alertList">
+                  <!-- Example items (JS will replace) -->
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="me-3">
+                      <div class="fw-semibold">Food & Grocery limit exceeded</div>
+                      <div class="small text-muted">Spent $215 / Limit $200 — Aug 28, 2025</div>
+                    </div>
+                    <span class="badge bg-danger-subtle text-danger rounded-pill">OVR</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="me-3">
+                      <div class="fw-semibold">Transport nearing limit</div>
+                      <div class="small text-muted">Spent $52 / Limit $60 — Aug 27, 2025</div>
+                    </div>
+                    <span class="badge bg-warning-subtle text-warning rounded-pill">WARN</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Weekly Summary -->
+          <div class="col-lg-6">
+            <div class="card shadow-sm mb-4">
+              <div class="card-header bg-white fw-semibold">Weekly Summary</div>
+              <div class="card-body">
+                <div class="row g-3 align-items-end">
+                  <div class="col-md-6">
+                    <label class="form-label">Delivery Channel</label>
+                    <div class="d-flex gap-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="weeklyEmail" checked>
+                        <label class="form-check-label" for="weeklyEmail">Email</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="weeklyPush">
+                        <label class="form-check-label" for="weeklyPush">Push</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Day</label>
+                    <select class="form-select" id="weeklyDay">
+                      <option>Sunday</option>
+                      <option>Monday</option>
+                      <option selected>Tuesday</option>
+                      <option>Wednesday</option>
+                      <option>Thursday</option>
+                      <option>Friday</option>
+                      <option>Saturday</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label">Time</label>
+                    <input type="time" class="form-control" id="weeklyTime" value="09:00">
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label">Summary Contents</label>
+                    <div class="row g-2">
+                      <div class="col-md-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="sumTotals" checked>
+                          <label class="form-check-label" for="sumTotals">Totals</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="sumTopCats" checked>
+                          <label class="form-check-label" for="sumTopCats">Top Categories</label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="sumCharts" checked>
+                          <label class="form-check-label" for="sumCharts">Charts</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 d-flex gap-2">
+                    <button class="btn btn-primary" id="btnSaveWeekly">Save Schedule</button>
+                    <button class="btn btn-outline-secondary" id="btnSendTest">Send Test Now</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Weekly Preview -->
+            <div class="card shadow-sm h-100">
+              <div class="card-header bg-white fw-semibold d-flex justify-content-between align-items-center">
+                <span>Weekly Summary Preview</span>
+                <small class="text-muted">Last 7 days</small>
+              </div>
+              <div class="card-body">
+                <div class="row g-4">
+                  <div class="col-12">
+                    <canvas id="weeklyChart" height="260"></canvas>
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-group small" id="weeklyHighlights">
+                      <!-- JS will render quick highlights -->
+                      <li class="list-group-item d-flex justify-content-between">
+                        <span>Top Category: Food & Grocery</span>
+                        <strong>$86.50</strong>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between">
+                        <span>Total Spend</span>
+                        <strong>$145.79</strong>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="small text-muted mt-2">Preview uses recent data; schedule determines when emails/push are
+                  sent.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- End Notifications Section -->
+
+  </main>
+  <!-- End #main -->
+
+  <footer class="site-footer bg-dark text-light">
+    <div class="container py-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center gap-2">
+            <i class="bx bx-wallet fs-4"></i>
+            <span class="fw-semibold">Smart Expense Tracker</span>
+          </div>
+          <div class="small text-secondary">Track expenses, grow savings, hit your goals.</div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="#" class="link-light link-underline-opacity-0 me-3">Support</a>
+          <a href="#" class="link-light link-underline-opacity-0 me-3">Privacy</a>
+          <a href="#" class="link-light link-underline-opacity-0">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://kit.fontawesome.com/48cd6f88e4.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
